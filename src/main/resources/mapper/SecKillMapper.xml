@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roy.mapper.SecKillMapper">
+
+    <select id="queryAll" resultType="com.roy.entity.SecKill">
+        select
+        seckill_id,name,number,start_time,end_time,create_time
+        from seckill
+        order by create_time desc
+        limit #{offset},#{limit}
+    </select>
+
+    <insert id="insertSuccessKilled">
+        <!--ignore忽略主键冲突 -->
+        insert ignore into success_killed(seckill_id,user_phone,state)
+        values
+        (#{secKillId},#{userPhone},0)
+    </insert>
+
+    <update id="reduceNumber">
+        <!--具体的sql -->
+        update
+        seckill
+        set
+        number = number -1
+        where seckill_id = #{secKillId}
+        and
+        start_time <![CDATA[ <= ]]>
+        #{killTime}
+        and end_time >= #{killTime}
+        and number > 0;
+    </update>
+
+    <insert id="addStu" parameterType="map">
+
+        insert into student(stu_name,age)
+        values
+        (#{name},#{age})
+    </insert>
+
+    <select id="getStuByName" resultType="com.roy.entity.Student" parameterType="string">
+        select
+        stu_name,age
+        from student where stu_name=#{name}
+    </select>
+
+</mapper>

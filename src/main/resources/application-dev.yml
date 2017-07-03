@@ -1,0 +1,9 @@
+server:
+  port: 8081
+  context-path: /SpringBootDemo
+
+testParamter: var1
+
+user1:
+  name: tom
+  age: 29
