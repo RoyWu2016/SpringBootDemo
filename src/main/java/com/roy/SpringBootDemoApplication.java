@@ -20,6 +20,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @EnableSwagger2
+@MapperScan("com.roy.mapper")
 public class SpringBootDemoApplication {
 
 	@Bean

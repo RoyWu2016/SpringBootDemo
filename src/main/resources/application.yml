@@ -23,4 +23,7 @@ spring:
 mybatis:
   mapperLocations: classpath:mapper/*.xml
   typeAliasesPackage: com.roy.entity
+logging:
+  config: classpath:logback-spring.xml
+
 
